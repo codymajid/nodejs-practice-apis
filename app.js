@@ -7,6 +7,9 @@ const PORT = process.env.PORT;
 // DATABASE
 const mongoose = require("mongoose")
 
+console.log("uriiiiii---->>>>>>>>>>>>>>>>>>>", uri)
+console.log("PORT---->>>>>>>>>>>>>>>>>>>", PORT)
+
 app.listen(PORT, () => {
-    console.log(`New app listening on port ${PORT}`)
+    console.log(`connection connected running at ${PORT}`)
 })
