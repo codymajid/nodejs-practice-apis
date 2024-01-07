@@ -1,32 +1,20 @@
 const express = require("express");
-const mongoose = require("mongoose")
 const dotenv = require("dotenv").config();
 const bodyParser = require('body-parser');
 const userRoutes = require("./routes/users");
 const cors = require('cors');
+const connectDb = require("./config/dbConnection");
 const app = express();
 
 // env files
 const uri = process.env.DATABASE_URL;
 const PORT = process.env.PORT;
 
-// database configuration
-async function connnection(){
-    try {
-        let connected = await mongoose.connect(`${uri}`)
-        console.log("Database Connected ----------->>>>")
-        return connected;
-
-    } catch (error) {
-        console.log("erorr in connecting Databse ------->>>>>>>", error)
-    }
-}
-
 // app configurations middlewares
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
-connnection()
+connectDb()
 
 // routes
 app.use('/users', userRoutes)
