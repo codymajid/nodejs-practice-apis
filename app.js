@@ -7,9 +7,24 @@ const PORT = process.env.PORT;
 // DATABASE
 const mongoose = require("mongoose")
 
-console.log("uriiiiii---->>>>>>>>>>>>>>>>>>>", uri)
-console.log("PORT---->>>>>>>>>>>>>>>>>>>", PORT)
+const connnection = async() => {
+    try {
+        let connected = await mongoose.connect(`${uri}`)
+        console.log("Database Connected ----------->>>>")
+        return connected;
 
-app.listen(PORT, () => {
-    console.log(`connection connected running at ${PORT}`)
+    } catch (error) {
+        console.log("erorr in connecting Databse ------->>>>>>>", error)
+    }
+}
+connnection()
+
+
+app.listen(3000, () => {
+    try {
+        console.log(`Server running at port ${PORT}`)
+    } catch (error) {
+        console.log(`server error :  ${error}`)
+        
+    }
 })
